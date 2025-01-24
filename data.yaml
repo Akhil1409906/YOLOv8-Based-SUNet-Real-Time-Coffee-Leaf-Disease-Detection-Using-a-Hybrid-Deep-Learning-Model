@@ -1,0 +1,8 @@
+
+path: D:/AKHIL/AKHIL/YOLO(major_projects)/coffe_leaf_disease/Dataset
+train: D:/AKHIL/AKHIL/YOLO(major_projects)/coffe_leaf_disease/Dataset/train
+val: D:/AKHIL/AKHIL/YOLO(major_projects)/coffe_leaf_disease/Dataset/valid
+test: D:/AKHIL/AKHIL/YOLO(major_projects)/coffe_leaf_disease/Dataset/test
+
+nc: 4  # Number of classes
+names: ['brown_eye_spot', 'leaf_miner', 'leaf_rust', 'red_spider_mite']  # Class names
