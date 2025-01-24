@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detection Result</title>
+
+    <!-- Load stylesheets -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/datepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="static/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="static/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="static/css/templatemo-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="static/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f4f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            color: #0077cc;
+            margin: 20px 0;
+            font-size: 2.5rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 1200px;
+            padding: 20px;
+            margin-top: 80px;
+        }
+
+        .card {
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    flex: 1 1 45%;
+    max-width: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 600px; /* Adjust the height to your preferred value */
+}
+
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .video-container, .img-container {
+    width: 80%;   /* Adjust width to desired percentage */
+    height: 400px; /* Fixed height */
+}
+
+video, img {
+    width: 100%;  /* Make the image/video fill the container */
+    height: 100%; /* Make it fill the container's height */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+
+        .back-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0077cc;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Navbar Styling */
+        nav {
+            background-color: #fbfbfb;
+            padding: 20px 0;
+        }
+
+        /* Navbar Styling */
+        nav {
+            background-color: #fbfbfb; /* Light background for a clean look */
+            padding: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Navbar Link Styling */
+        nav a {
+            color: #121212; /* Dark text color for contrast */
+            font-size: 18px; /* Regular font size */
+            font-weight: 600; /* Medium weight for prominence */
+            text-transform: uppercase;
+            letter-spacing: 1px; /* Spacing for a clean, modern look */
+            padding: 10px 20px;
+            margin: 0 10px; /* Add spacing between links */
+            transition: color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+            display: inline-block;
+        }
+
+        /* Navbar Link Hover Effect */
+        nav a:hover {
+            color: #1abc9c; /* Green color on hover */
+            transform: scale(1.1); /* Slight zoom-in effect */
+        }
+
+        /* Centering Navbar Links */
+        nav .navbar-nav {
+            justify-content: center;
+        }
+
+        /* Navbar Brand Styling */
+        nav .navbar-brand {
+            font-size: 28px; /* Larger brand name for emphasis */
+            font-weight: bold;
+            color: #151313; /* Darker shade for brand text */
+            letter-spacing: 2px; /* Spacing for clarity */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Align brand to left */
+        }
+
+        /* Navbar Brand Icon Styling */
+        nav .navbar-brand i {
+            color: #050808; /* Green icon color to match hover effect */
+            margin-right: 5px; /* Space between icon and text */
+            font-size: 12px; /* Icon size increased for balance */
+            
+        }
+
+        
+
+        /* Active Navbar Link */
+        nav .navbar-nav .nav-item.active a {
+            color: #3498db; /* Highlight the active link */
+            font-weight: bold;
+        }
+        .navbar-brand img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px; /* Adjust the space between the image and text */
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <!-- Navbar Brand with the Leaf Icon on the Left -->
+            <a class="navbar-brand">
+                <img src="static/ic5.png" alt="Coffee Leaf" >
+                Coffee Leaf Disease Detection
+            </a>
+            
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Upload</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <h1>Detection Result</h1>
+
+    <div class="container">
+        {% if original_file %}
+        <div class="card">
+            <h3>Original File</h3>
+            {% if original_file.endswith(('mp4', 'avi', 'mov', 'mkv')) %}
+            <video controls autoplay muted loop>
+                <source src="{{ url_for('uploaded_file', filename=original_file) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            {% else %}
+            <img src="{{ url_for('uploaded_file', filename=original_file) }}" alt="Original File">
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if result_file %}
+        <div class="card">
+            <h3>Processed Image</h3>
+            <img src="{{ url_for('result_file', filename=result_file) }}" alt="Result File">
+        </div>
+        {% elif result_video %}
+        <div class="card">
+            <h3>Processed Video</h3>
+            <video controls autoplay muted loop>
+                <source src="{{ url_for('result_video', filename=result_video) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="back-button">
+        <a href="{{ url_for('index') }}">Back to Index Page</a>
+    </div>
+
+    <!-- Bootstrap JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

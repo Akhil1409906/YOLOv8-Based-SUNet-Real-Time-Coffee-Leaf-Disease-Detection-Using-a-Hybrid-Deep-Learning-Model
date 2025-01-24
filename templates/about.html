@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Coffee Leaf Disease Detection</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<style>
+    /* Body and background styles */
+    html, body {
+        height: 100%;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: #f1f3f6;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #fafbfb;
+        padding: 15px 30px;
+        z-index: 1000;
+    }
+
+    .navbar-brand {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #110f0f;
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-brand i {
+        margin-right: 10px;
+    }
+
+    .navbar-nav .nav-link {
+        color: #121416 !important;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+        background-color: #00b894;
+        border-radius: 5px;
+        color: #212529;
+    }
+
+    /* About Section Styling */
+    #about {
+        padding: 120px 0;
+        background: linear-gradient(45deg, #ffffff, #bac3c8);
+        color: white;
+    }
+
+    #about h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 40px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .content {
+        margin-top: 40px;
+        text-align: justify;
+        line-height: 1.8;
+        color: #161313;
+    }
+
+    .content h3 {
+        font-size: 2.2rem;
+        color: #0e1010;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .content p {
+        font-size: 1.5rem;
+        color: #171515;
+        margin-bottom: 20px;
+    }
+
+    .content p:hover {
+        color: #fff;
+        transition: color 0.3s ease;
+    }
+
+    /* Image Styling */
+    .content img {
+        width: 100%;
+        max-width: 800px;
+        border-radius: 85px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+        margin-bottom:30px;
+        transition: transform 0.3s ease;
+    }
+
+    .content img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Cards for Disease Types Section */
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        margin-top: 20px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+    }
+
+    .card-body {
+        padding: 25px;
+    }
+
+    .card-body h4 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .card-body p {
+        font-size: 1.1rem;
+        color: #777;
+        line-height: 1.6;
+    }
+
+    .card-img-top {
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    /* Footer Styling */
+    footer {
+        background-color: #051c24;
+        color: #ffffff;
+        padding: 30px 0;
+        text-align: center;
+    }
+
+    footer p {
+        font-size: 1.2rem;
+    }
+
+    /* Button Hover Effects */
+    .btn-custom {
+        background-color: #00b894;
+        color: white;
+        border-radius: 30px;
+        padding: 10px 30px;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-custom:hover {
+        background-color: #1abc9c;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .navbar-brand {
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            padding: 8px 15px;
+        }
+
+        .content h3 {
+            font-size: 1.5rem;
+        }
+
+        .content p {
+            font-size: 1rem;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-img-top {
+            height: 200px;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+    }
+    /* styles.css */
+.navbar-logo {
+    width: 50px;
+    height: 50px;
+}
+h3 {
+            color: black;
+        }
+
+</style>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="static/ic5.png" alt="Coffee Leaf Disease Detection" class="navbar-logo">
+                Coffee Leaf Disease Detection
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/index">Upload</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/chart">Chart</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Coffee Leaf Disease Detection</h2>
+
+            <div class="content">
+                <h3>What is Coffee Leaf Disease Detection?</h3>
+                <p>
+                    Coffee leaf diseases are one of the most devastating threats to coffee production worldwide. Without early detection and proper treatment, the spread of diseases like **Leaf Rust** and **Coffee Berry Borer** can significantly reduce the yield and quality of coffee beans. **Coffee Leaf Disease Detection** is an advanced solution powered by artificial intelligence (AI) and deep learning algorithms that aim to detect and classify these diseases accurately, thus helping farmers take prompt action.
+                </p>
+                <p>
+                    Using **YOLOv8**, one of the most advanced real-time object detection models, the system analyzes high-resolution images of coffee plants. The algorithm identifies specific disease symptoms such as spots, lesions, or color changes on the leaves. This data can then be processed to provide real-time feedback to farmers, empowering them to make informed decisions about disease control measures.
+                </p>
+                <center><img src="{{ url_for('static', filename='g2.webp') }}" alt="Coffee Leaf Disease Detection"></center>
+
+                <h3>Importance of Early Detection</h3>
+                <p>
+                    The earlier a disease is detected, the easier it is to manage. Early-stage detection can prevent diseases from spreading across large swathes of crops, reducing the need for excessive pesticide use. With our system, farmers receive timely warnings and can target specific areas affected by disease, making interventions more effective and environmentally friendly. Early detection also results in healthier coffee plants and better overall crop productivity.
+                </p>
+                <p>
+                    This system not only benefits the environment by reducing the chemical input but also improves the economic viability of coffee farming. Farmers can mitigate crop losses, minimize the financial burden of diseases, and maintain a higher standard of coffee quality.
+                </p>
+
+                <h3>How YOLOv8 Enhances Detection</h3>
+                <p>
+                    YOLOv8 is a state-of-the-art object detection model that stands out for its **speed and accuracy**. Unlike traditional methods that rely on manual observation, which is time-consuming and often error-prone, YOLOv8 can analyze thousands of images within seconds. By using deep learning, the model is able to identify patterns and make precise predictions, even under challenging conditions like low lighting or partial obstruction of the coffee leaves.
+                </p>
+                <p>
+                    This deep learning approach allows the model to learn and improve continuously. As more data is collected and more disease types are introduced, the model's detection capabilities become more robust, enabling it to provide even better results over time.
+                </p>
+                <center><img src="{{ url_for('static', filename='g3.webp') }}" alt="YOLO Algorithm for Coffee Leaf Disease"></center>
+            </div>
+
+            <h3>What They</h3>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='z.png') }}" class="card-img-top" alt="Leaf Rust">
+                        <div class="card-body">
+                            <h4 class="card-title">Leaf Rust</h4>
+                            <p class="card-text">Leaf rust is a fungal disease that affects the leaves of coffee plants. It causes yellow spots that can lead to leaf drop, significantly reducing plant productivity.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='81.jpg') }}" class="card-img-top" alt="Coffee Berry Borer">
+                        <div class="card-body">
+                            <h4 class="card-title">Coffee Berry Borer</h4>
+                            <p class="card-text">This pest infests coffee berries, leading to a loss in crop yield. Detecting it early prevents widespread damage and ensures high-quality harvests.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='82.jpg') }}" class="card-img-top" alt="Fungal Infections">
+                        <div class="card-body">
+                            <h4 class="card-title">Fungal Infections</h4>
+                            <p class="card-text">Fungal infections like Coffee Leaf Spot can quickly spread if not treated early. Detection of these spots allows for effective treatment and control.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Coffee Leaf Disease Detection. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

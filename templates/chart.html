@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Performance Metrics Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+        
+
+        /* Navbar Styling */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 20px 30px;
+            color: rgb(14, 13, 13);
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .navbar-brand h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+        }
+        .navbar-links a {
+            color: rgb(18, 16, 16);
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .navbar-links a:hover {
+    background-color: #00b894; /* Background color when hovered */
+    border: 3px solid #ffffff; /* Border size and color */
+    border-radius: 10px; /* Adjust the corner roundness */
+    color: #212529; /* Text color */
+    padding: 5px 10px; /* Optional: Adjust spacing inside the element */
+}
+
+        /* Header Styling */
+        header {
+            background-color: #f1f1f1;
+            color: rgb(17, 17, 17);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .charts-container {
+        display: flex;
+        flex-direction: column; /* Arrange charts vertically */
+        gap: 40px; /* Adjust space between the charts */
+        align-items: center; /* Center charts horizontally */
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto; /* Center the container */
+    }
+
+    .chart-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 80%; /* Adjust chart width */
+    }
+
+    .chart-card h3 {
+        text-align: center;
+        color: #333;
+    }
+
+    .chart-container {
+        margin-top: 15px;
+    }
+    .chart-card p {
+    margin-top: 15px; /* Space between the chart and the text */
+    font-size: 19px; /* Adjust font size for readability */
+    color: #010101; /* Subtle gray text color */
+    line-height: 1.6; /* Improve line spacing */
+    text-align: justify; /* Align text neatly */
+    padding: 10px; /* Add space around the text */
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 5px; /* Rounded corners for a softer look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: slight shadow for better appearance */
+}
+
+
+        .speed-info {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .speed-info p {
+            font-size: 18px;
+        }
+        footer{
+            margin-top:50px;
+            background-color: #ffffff;
+            color:black;
+            padding:30px;
+        }
+        footer p{
+            font-size: 19px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar Section -->
+<nav>
+    <div class="navbar-brand">
+        <img src="static/ic5.png" alt="Brand Logo"> <!-- Replace 'your-logo.png' with your logo image -->
+        <h2>Coffe leaf disease detection</h2>
+    </div>
+    <div class="navbar-links">
+        <a href="/">Home</a>
+        <a href="/register">Register</a>
+        <a href="/login">Login</a>
+        <a href="/index">Upload</a>
+        <a href="/about">About</a>
+        <a href="/chart">Chart</a>
+    </div>
+</nav>
+
+<header>
+    <h1>Model Performance Metrics Dashboard</h1>
+</header>
+
+<div class="container">
+   
+    <!-- Chart Container -->
+    <div class="charts-container">
+        <!-- Precision & Recall Chart -->
+        <div class="chart-card">
+            <h3>Precision & Recall</h3>
+            <div class="chart-container">
+                <canvas id="precisionRecallChart"></canvas>
+            </div>
+            <p>
+                Precision measures the accuracy of positive predictions, indicating how many of the model's predictions are correct. Recall assesses the model's ability to identify actual positive cases.  
+                In our project, the precision is 85.5% and recall is 85.7%, showcasing the model's effectiveness in classifying coffee leaf diseases accurately.
+            </p>
+            </p>
+        </div>
+        
+        <!-- mAP50 & mAP50-95 Chart -->
+        <div class="chart-card">
+            <h3>mAP50 & mAP50-95</h3>
+            <div class="chart-container">
+                <canvas id="mapChart"></canvas>
+            </div>
+            <p>
+                Mean Average Precision (mAP50) represents the average precision across all classes at a specific Intersection over Union (IoU) threshold of 50%. mAP50-95 provides an averaged value across multiple IoU thresholds ranging from 50% to 95%. In this project, the mAP50 is 90.3% and the mAP50-95 is 61.5%, showcasing the model's high performance in correctly identifying diseases at various thresholds.
+            </p>
+        </div>
+        
+        <!-- Fitness Chart -->
+        <div class="chart-card">
+            <h3>Fitness</h3>
+            <div class="chart-container">
+                <canvas id="fitnessChart"></canvas>
+            </div>
+            <p>
+                Fitness is a custom metric that indicates how well the model is optimized based on specific objectives such as accuracy, speed, and the balance between precision and recall. In this project, the fitness score is 0.844, reflecting the model's moderate alignment with the optimization goals.
+            </p>
+        </div>
+    </div>
+<footer>
+   <center> <p>@2024 All Rights Reserved</p></center>
+</footer>
+    
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // Precision & Recall Chart
+    var ctxPrecisionRecall = document.getElementById('precisionRecallChart').getContext('2d');
+    var precisionRecallChart = new Chart(ctxPrecisionRecall, {
+        type: 'bar',
+        data: {
+            labels: ['Precision (B)', 'Recall (B)'],
+            datasets: [{
+                label: 'Model Metrics',
+                data: [0.855, 0.857],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // mAP50 & mAP50-95 Chart
+    var ctxMap = document.getElementById('mapChart').getContext('2d');
+    var mapChart = new Chart(ctxMap, {
+        type: 'bar',
+        data: {
+            labels: ['mAP50 (B)', 'mAP50-95 (B)'],
+            datasets: [{
+                label: 'Model Metrics',
+                data: [0.903, 0.615],
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Fitness Chart
+    var ctxFitness = document.getElementById('fitnessChart').getContext('2d');
+    var fitnessChart = new Chart(ctxFitness, {
+        type: 'bar',
+        data: {
+            labels: ['Fitness'],
+            datasets: [{
+                label: 'Model Fitness',
+                data: [0.844],
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderColor: 'rgba(255, 159, 64, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

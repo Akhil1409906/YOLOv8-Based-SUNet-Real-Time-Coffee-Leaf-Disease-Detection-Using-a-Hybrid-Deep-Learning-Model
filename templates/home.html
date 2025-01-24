@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Leaf Disease Detection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<style>
+  /* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Navbar Styles */
+.navbar {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    background-color: #f8f9fa; /* Light background color */
+    padding: 1.5rem 2rem; /* Increased padding for better spacing */
+    border-radius: 5px; /* Optional: rounded corners */
+}
+
+.navbar-nav {
+    display: flex; /* Ensure links are aligned in a row */
+    align-items: center; /* Vertically center items */
+}
+
+.nav-link {
+    font-size: 1.5rem; /* Increased font size */
+    margin-right: 1.5rem; /* More space between links */
+    color: #333;
+    padding: 0.5rem 1rem; /* Adding padding to the link for a button-like feel */
+    border-radius: 5px; /* Optional: rounded corners for the link */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+}
+
+.nav-link:hover {
+    color: #fff; /* White text on hover */
+    background-color: #4c79aa; /* Dark blue background on hover */
+}
+
+.navbar-toggler {
+    border: none; /* Remove border on toggle button */
+    background-color: #0056b3; /* Button background */
+}
+
+.navbar-toggler-icon {
+    background-color: #fff; /* Icon color */
+}
+
+.navbar-collapse {
+    justify-content: flex-end; /* Align the links to the right */
+}
+
+/* Optional: Adds a border to the bottom of the navbar for emphasis */
+.navbar {
+    border-bottom: 2px solid #0056b3;
+}
+/* Navbar Brand Styles */
+.navbar-brand {
+    font-size: 2.5rem; /* Increased font size */
+    font-weight: 700; /* Thicker font weight */
+    color: #2c3e50; /* Darker color for the brand text */
+    display: flex; /* Align icon and text in a row */
+    align-items: center; /* Vertically center the text and icon */
+}
+
+.navbar-brand i {
+    font-size: 2.5rem; /* Adjust icon size */
+    margin-right: 0.5rem; /* Space between icon and text */
+}
+
+.navbar-brand:hover {
+    color: #0e0e0f; /* Color change on hover */
+}
+
+.navbar-brand:hover i {
+    color: #0f1010; /* Icon color change on hover */
+}
+.navbar-icon {
+    width: 3.5rem; /* Adjust the icon size */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 0.5rem; /* Space between icon and text */
+}
+
+
+
+/* Hero Section */
+#home {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+}
+#home video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+#home h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+#home p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+#home .btn {
+    font-size: 1.2rem;
+    padding: 10px 25px;
+    background-color: #0056b3;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+}
+#home .btn:hover {
+    background-color: #003a75;
+}
+
+/* About Section Styles */
+#about {
+    background: linear-gradient(to right, #e5e2e1, #e5e3e3, #efefef, #fcf7f6); /* Gradient background */
+    color: #fff;
+    padding: 60px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#about .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* About Section Styles */
+#about {
+    background-color: #f8f9fa; /* Light background color */
+    padding: 80px 0; /* Adjusted padding for a larger section */
+}
+
+/* Image container with relative positioning */
+.image-container {
+    position: relative;
+    text-align: center; /* Center the text above the image */
+    margin-bottom: 30px; /* Space between image and text */
+}
+
+.image-text {
+    position: absolute;
+    top: -60px; /* Adjusted to create more space between the text and image */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff; /* White text for better contrast */
+    font-size: 3.5rem; /* Larger font size for more emphasis */
+    font-weight: 900; /* Extra bold text for thicker font */
+    z-index: 3; /* Ensure text is above the image */
+    padding: 25px 35px; /* Adjusted padding for better spacing */
+    border-radius: 15px; /* Optional: rounded corners for the text box */
+    box-shadow: none; /* Removed the box-shadow */
+    text-transform: uppercase; /* Uppercase text for style */
+    letter-spacing: 2px; /* Optional: increased letter spacing for more style */
+}
+
+/* Image styling */
+.about-image {
+    width: 100%; /* Full width image */
+    max-width: 800px; /* Max width for large images */
+    height: auto;
+    margin-top: 50px; /* Space between text and image */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Soft shadow around the image */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effect */
+}
+
+/* Hover effect for images */
+.about-image:hover {
+    transform: scale(1.05); /* Slightly enlarge the image */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+/* Text styles for the content */
+#about .col-md-6 p {
+    font-size: 1.5rem; /* Slightly larger text */
+    line-height: 1.9; /* Increase line height for better readability */
+    color: #040303; /* Darker text color for better contrast */
+    margin-top: 20px; /* Space between text and image */
+}
+
+/* Container and row styles */
+#about .container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the content */
+}
+
+#about .row {
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #about {
+        padding: 60px 15px; /* Less padding on small screens */
+    }
+
+    /* Image size adjustment for smaller screens */
+    .about-image {
+        max-width: 100%; /* Ensure image fits smaller screens */
+    }
+
+    /* Smaller font size for text */
+    .image-text {
+        font-size: 1.8rem; /* Adjusted for mobile screens */
+        padding: 20px;
+    }
+
+    /* Adjust text paragraph size */
+    #about .col-md-6 p {
+        font-size: 1rem; /* Smaller text on mobile */
+    }
+
+    /* Stack the layout on smaller screens */
+    .row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Adjust image size even more on extra small screens */
+    .about-image {
+        max-width: 100%;
+        height: 300px; /* Fixed height for very small screens */
+        object-fit: cover; /* Ensure image covers the area without distortion */
+    }
+}
+
+/* Features Section Styles */
+#features {
+    background-color: #f8f9fa; /* Light background for features */
+    padding: 60px 0; /* Padding to give space inside the section */
+}
+
+#features h2 {
+    font-size: 2.8rem; /* Large text for the section title */
+    font-weight: bold;
+    color: #110f0f;
+    margin-bottom: 30px; /* Space below the title */
+}
+
+.feature {
+    text-align: center; /* Center the text below each image */
+    padding: 15px; /* Padding around the feature items */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center both the image and text horizontally */
+    justify-content: center; /* Vertically center the content */
+}
+
+.feature img {
+    max-width: 100%; /* Ensure images are responsive */
+    height: 800px;
+    border-radius: 30px; /* Optional: rounded corners for the images */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow around images */
+}
+
+.feature p {
+    font-size: 1.6rem; /* Slightly larger text for feature description */
+    color: #080707; /* Dark grey text for contrast */
+    margin-top: 15px; /* Space between image and text */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #features h2 {
+        font-size: 2rem; /* Smaller title size on mobile */
+    }
+
+    .feature p {
+        font-size: 1rem; /* Adjust text size for mobile */
+    }
+}
+
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+footer a {
+    color: #0056b3;
+    text-decoration: none;
+}
+footer a:hover {
+    color: #77c3ec;
+}
+</style>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/static/ic2.png" alt="Coffee Icon" class="navbar-icon"> Coffee Leaf Disease Detection 
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Coffe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <video autoplay muted loop>
+            <source src="static/v1.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>Welcome to CoffeeLeaf Disease Detection</h1>
+            <p>Empowering farmers with real-time coffee leaf disease detection.</p>
+            <a href="/register" class="btn btn-primary">Learn More</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+<section id="about" class="py-5">
+    <div class="container">
+        <!-- First Row: Image on the left, text on the right -->
+        <div class="row justify-content-center align-items-center mb-5">
+            <div class="col-md-6 text-center order-md-1">
+                <div class="image-container">
+                    <p class="image-text">The Project</p>
+                    <img src="static/2.jpg" alt="About" class="img-fluid about-image">
+                </div>
+            </div>
+            <div class="col-md-6 text-left order-md-2">
+                <p>
+                    "CoffeeLeaf Detect uses cutting-edge AI and YOLO technology to identify diseases in coffee leaves.
+                    This tool aids farmers in detecting diseases early, ensuring better crop yields and healthier plants."
+                </p>
+            </div>
+        </div>
+
+        <!-- Second Row: Image on the right, text on the left -->
+        <div class="row justify-content-center align-items-center mb-5">
+            <div class="col-md-6 text-center order-md-2">
+                <div class="image-container">
+                    <p class="image-text">Coffee</p>
+                    <img src="static/4.jpg" alt="About" class="img-fluid about-image">
+                </div>
+            </div>
+            <div class="col-md-6 text-left order-md-1">
+                <p>
+                    "Coffee is one of the most beloved beverages worldwide, known for its rich flavor and energizing effects. From morning rituals to social gatherings, it unites people and fuels productivity."
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <!-- Features Section -->
+<section id="features" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Key Features</h2>
+        <!-- Feature 1 -->
+        <div class="feature d-flex flex-column align-items-center mb-4">
+            <img src="static/92.webp" alt="Feature 1" class="img-fluid mb-3">
+            <p class="text-center">Real-time disease detection using YOLO technology.</p>
+        </div>
+        <!-- Feature 2 -->
+        <div class="feature d-flex flex-column align-items-center mb-4">
+            <img src="static/83.jpg" alt="Feature 2" class="img-fluid mb-3">
+            <p class="text-center">Accurate disease classification for precise treatment.</p>
+        </div>
+        <!-- Feature 3 -->
+        <div class="feature d-flex flex-column align-items-center mb-4">
+            <img src="static/5.jpg" alt="Feature 3" class="img-fluid mb-3">
+            <p class="text-center">Mobile-friendly platform for on-the-go analysis.</p>
+        </div>
+        <!-- Feature 4 -->
+        <div class="feature d-flex flex-column align-items-center mb-4">
+            <img src="static/91.webp" alt="Feature 4" class="img-fluid mb-3">
+            <p class="text-center">Comprehensive disease reports with treatment suggestions.</p>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- Footer -->
+    <footer class="text-center py-3">
+        <p>&copy; 2024 CoffeeLeaf Detect. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
